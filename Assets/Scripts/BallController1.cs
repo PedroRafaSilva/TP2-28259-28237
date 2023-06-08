@@ -10,6 +10,7 @@ public class BallController1 : MonoBehaviour
     private Vector3 direction;
     private Rigidbody rb;
     public bool stopped = true;
+    public AudioSource soundEffect;
 
     public GameObject sparksVFX;
 
@@ -40,11 +41,13 @@ public class BallController1 : MonoBehaviour
 
 
         if (other.CompareTag("Wall")) {
+            soundEffect.Play();
             direction.z = -direction.z;
             speed += 0.25f;
             hit = true;
         }
         if (other.CompareTag("Racket")) {
+            soundEffect.Play();
             Vector3 newDirection = (transform.position - other.transform.position).normalized;
             newDirection.y = 0f;
             newDirection.x = Mathf.Sign(newDirection.x) * Mathf.Max(Mathf.Abs(newDirection.x), this.minDirection);
