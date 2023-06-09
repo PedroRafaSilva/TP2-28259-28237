@@ -11,6 +11,7 @@ public class JogoController : MonoBehaviour
     public Text scoreTextRight;
     public GameObject victoryMessage; // Referência ao objeto que exibirá a mensagem de vitória
     public GameObject instructionMessage; 
+    public GameObject instructionMessage2; 
     public GameObject beginMessage; // Referência ao objeto que exibirá a mensagem de vitória
     public float restartDelay = 1f; // Tempo de atraso antes de reiniciar o jogo
     private bool started = false;
@@ -31,6 +32,7 @@ public class JogoController : MonoBehaviour
     {
         this.beginMessage.SetActive(true);
         this.instructionMessage.SetActive(true);
+        this.instructionMessage2.SetActive(true);
         this.victoryMessage.SetActive(false);
         this.ballController = this.ball.GetComponent<BallController1>();
         this.startingPosition = this.ball.transform.position;
@@ -56,6 +58,7 @@ public class JogoController : MonoBehaviour
             if (tempoLimite <= 0f)
             {
                 this.ballController.Stop();
+                this.ball.transform.position = this.startingPosition;
                 CheckEndGame(); 
             }
         }
@@ -70,15 +73,14 @@ public class JogoController : MonoBehaviour
             this.started = true;
             this.beginMessage.SetActive(false);
             this.instructionMessage.SetActive(false);
+            this.instructionMessage2.SetActive(false);
             this.starter.StartCountdown();
         }
     }
 
-
     private IEnumerator LoadSceneAfterDelay()
     {
-        yield return new WaitForSeconds(restartDelay + 1f);
-
+        yield return new WaitForSeconds(restartDelay);
         SceneManager.LoadScene("Menu");
     }
 
@@ -103,7 +105,6 @@ public class JogoController : MonoBehaviour
         }
     }
 
-
     public void StartGame()
     {
         this.ballController.Go();
@@ -119,15 +120,15 @@ public class JogoController : MonoBehaviour
         ShowVictoryMessage("Player Left Scores!"); // Exibe a mensagem de vitória
     }
 
-        public void ScoreRightGoal()
-        {
-            soundEffect.Play();
-            Debug.Log("ScoreRightGoal");
-            this.scoreLeft += 1;
-            UpdateUI();
-            ResetBall();
-            ShowVictoryMessage("Player Right Scores!"); // Exibe a mensagem de vitória
-        }
+    public void ScoreRightGoal()
+    {
+        soundEffect.Play();
+        Debug.Log("ScoreRightGoal");
+        this.scoreLeft += 1;
+        UpdateUI();
+        ResetBall();
+        ShowVictoryMessage("Player Right Scores!"); // Exibe a mensagem de vitória
+    }
 
     private void UpdateUI()
     {
@@ -160,8 +161,6 @@ public class JogoController : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        UpdateUI();
-        ResetBall();
         victoryMessage.SetActive(false); // Desativa o objeto da mensagem de vitória
     }
 }
