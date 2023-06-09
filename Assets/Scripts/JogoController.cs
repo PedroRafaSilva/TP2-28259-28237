@@ -18,6 +18,7 @@ public class JogoController : MonoBehaviour
     private int scoreLeft = 0;
     private int scoreRight = 0;
     public AudioSource soundEffect;
+    public AudioSource victoryEffect;
     public float tempoLimite = 1200f; // Tempo limite de 60 segundos
     public Text textoTempoLimite;
 
@@ -59,6 +60,7 @@ public class JogoController : MonoBehaviour
             {
                 this.ballController.Stop();
                 this.ball.transform.position = this.startingPosition;
+                victoryEffect.Play();
                 CheckEndGame(); 
             }
         }
