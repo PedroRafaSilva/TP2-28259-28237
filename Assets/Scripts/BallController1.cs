@@ -43,7 +43,7 @@ public class BallController1 : MonoBehaviour
         if (other.CompareTag("Wall")) {
             soundEffect.Play();
             direction.z = -direction.z;
-            speed += 0.25f;
+            speed += 0.5f;
             hit = true;
         }
         if (other.CompareTag("Racket")) {
@@ -52,7 +52,7 @@ public class BallController1 : MonoBehaviour
             newDirection.y = 0f;
             newDirection.x = Mathf.Sign(newDirection.x) * Mathf.Max(Mathf.Abs(newDirection.x), this.minDirection);
             newDirection.z = Mathf.Sign(newDirection.z) * Mathf.Max(Mathf.Abs(newDirection.z), this.minDirection);
-            speed += 0.5f;
+            speed += 0.75f;
             hit = true;
 
             direction = newDirection;

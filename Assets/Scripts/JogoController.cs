@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class JogoController : MonoBehaviour
 {
@@ -9,12 +10,15 @@ public class JogoController : MonoBehaviour
     public Text scoreTextLeft;
     public Text scoreTextRight;
     public GameObject victoryMessage; // Referência ao objeto que exibirá a mensagem de vitória
+    public GameObject instructionMessage; 
     public GameObject beginMessage; // Referência ao objeto que exibirá a mensagem de vitória
     public float restartDelay = 1f; // Tempo de atraso antes de reiniciar o jogo
     private bool started = false;
     private int scoreLeft = 0;
     private int scoreRight = 0;
     public AudioSource soundEffect;
+    public float tempoLimite = 1200f; // Tempo limite de 60 segundos
+    public Text textoTempoLimite;
 
     public Starter starter;
 
@@ -26,6 +30,7 @@ public class JogoController : MonoBehaviour
     void Start()
     {
         this.beginMessage.SetActive(true);
+        this.instructionMessage.SetActive(true);
         this.victoryMessage.SetActive(false);
         this.ballController = this.ball.GetComponent<BallController1>();
         this.startingPosition = this.ball.transform.position;
@@ -36,6 +41,27 @@ public class JogoController : MonoBehaviour
     {
         if (this.started)
         {
+            
+            tempoLimite -= Time.deltaTime;
+
+            int minutos = Mathf.FloorToInt(tempoLimite / 60);
+            int segundos = Mathf.FloorToInt(tempoLimite % 60); // Substitua "%" por "/"
+
+            // Formata o tempo como "mm:ss"
+            string tempoFormatado = string.Format("{0:00}:{1:00}", minutos, segundos);
+
+            // Atualiza o texto com o tempo formatado
+            textoTempoLimite.text = "Time: " + tempoFormatado;
+
+            if (tempoLimite <= 0f)
+            {
+                this.ballController.Stop();
+                CheckEndGame(); 
+            }
+        }
+
+        if (this.started)
+        {
             return;
         }
 
@@ -43,7 +69,37 @@ public class JogoController : MonoBehaviour
         {
             this.started = true;
             this.beginMessage.SetActive(false);
+            this.instructionMessage.SetActive(false);
             this.starter.StartCountdown();
+        }
+    }
+
+
+    private IEnumerator LoadSceneAfterDelay()
+    {
+        yield return new WaitForSeconds(restartDelay + 1f);
+
+        SceneManager.LoadScene("Menu");
+    }
+
+
+    public void CheckEndGame()
+    {
+        if (scoreRight > scoreLeft)
+        {
+            ShowVictoryMessage("Player Right Wins!");
+            StartCoroutine(LoadSceneAfterDelay());
+        }
+        else if (scoreRight < scoreLeft) 
+        {
+            ShowVictoryMessage("Player Left Wins!");
+            StartCoroutine(LoadSceneAfterDelay());
+        }
+        else
+        {
+            ShowVictoryMessage("DRAW!");
+            StartCoroutine(LoadSceneAfterDelay());
+
         }
     }
 
@@ -60,7 +116,7 @@ public class JogoController : MonoBehaviour
         this.scoreRight += 1;
         UpdateUI();
         ResetBall();
-        ShowVictoryMessage("Player Left Wins!"); // Exibe a mensagem de vitória
+        ShowVictoryMessage("Player Left Scores!"); // Exibe a mensagem de vitória
     }
 
         public void ScoreRightGoal()
@@ -70,7 +126,7 @@ public class JogoController : MonoBehaviour
             this.scoreLeft += 1;
             UpdateUI();
             ResetBall();
-            ShowVictoryMessage("Player Right Wins!"); // Exibe a mensagem de vitória
+            ShowVictoryMessage("Player Right Scores!"); // Exibe a mensagem de vitória
         }
 
     private void UpdateUI()
@@ -103,7 +159,7 @@ public class JogoController : MonoBehaviour
     private IEnumerator DelayedRestart(float delay)
     {
         yield return new WaitForSeconds(delay);
-    
+
         UpdateUI();
         ResetBall();
         victoryMessage.SetActive(false); // Desativa o objeto da mensagem de vitória

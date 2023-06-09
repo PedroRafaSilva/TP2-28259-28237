@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour
 
     private Vector3 startingPosition;
 
-    private BallController ballController;
+    private BallController1 ballController;
 
     // Start is called before the first frame update
     void Start()
