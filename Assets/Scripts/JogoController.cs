@@ -7,30 +7,40 @@ using UnityEngine.SceneManagement;
 public class JogoController : MonoBehaviour
 {
     public GameObject ball;
+
     public Text scoreTextLeft;
     public Text scoreTextRight;
+
     public GameObject victoryMessage; // Referência ao objeto que exibirá a mensagem de vitória
     public GameObject instructionMessage; 
     public GameObject instructionMessage2; 
     public GameObject beginMessage; // Referência ao objeto que exibirá a mensagem de vitória
-    public float restartDelay = 1f; // Tempo de atraso antes de reiniciar o jogo
+
+    public float restartDelay = 3f; // Tempo de atraso antes de reiniciar o jogo
     private bool started = false;
+
     private int scoreLeft = 0;
     private int scoreRight = 0;
-    public AudioSource soundEffect;
-    public AudioSource victoryEffect;
+
     public float tempoLimite = 1200f; // Tempo limite de 60 segundos
     public Text textoTempoLimite;
+    public AudioSource[] audioSources;
 
     public Starter starter;
 
     private BallController1 ballController;
 
     private Vector3 startingPosition;
+    private Vector3 startingPosition2;
+
+    public ParticleSystem particleEffect; // Reference to the particle system component
+
+
 
     // Start is called before the first frame update
     void Start()
     {
+        particleEffect.gameObject.SetActive(false);
         this.beginMessage.SetActive(true);
         this.instructionMessage.SetActive(true);
         this.instructionMessage2.SetActive(true);
@@ -56,14 +66,22 @@ public class JogoController : MonoBehaviour
             // Atualiza o texto com o tempo formatado
             textoTempoLimite.text = "Time: " + tempoFormatado;
 
-            if (tempoLimite <= 0f)
+            if (tempoLimite <= 1f)
             {
-                this.ballController.Stop();
-                this.ball.transform.position = this.startingPosition;
-                victoryEffect.Play();
-                CheckEndGame(); 
+                particleEffect.gameObject.SetActive(true);
+                StopAudio(2);
+                this.started = false;
+                PlayAudio(1);
+                CheckEndGame();
             }
         }
+
+        if (tempoLimite <= 1f)
+            {
+                this.ballController.Stop();
+                this.ball.transform.position = this.startingPosition;  
+                return;
+            }
 
         if (this.started)
         {
@@ -72,11 +90,28 @@ public class JogoController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space))
         {
+            PlayAudio(2);
             this.started = true;
             this.beginMessage.SetActive(false);
             this.instructionMessage.SetActive(false);
             this.instructionMessage2.SetActive(false);
             this.starter.StartCountdown();
+        }
+    }
+
+    public void PlayAudio(int index)
+    {
+        if (index >= 0 && index < audioSources.Length)
+        {
+            audioSources[index].Play();
+        }
+    }
+
+    public void StopAudio(int index)
+    {
+        if (index >= 0 && index < audioSources.Length)
+        {
+            audioSources[index].Stop();
         }
     }
 
@@ -103,7 +138,6 @@ public class JogoController : MonoBehaviour
         {
             ShowVictoryMessage("DRAW!");
             StartCoroutine(LoadSceneAfterDelay());
-
         }
     }
 
@@ -114,21 +148,21 @@ public class JogoController : MonoBehaviour
 
     public void ScoreLeftGoal()
     {
-        soundEffect.Play();
+        PlayAudio(0);
         Debug.Log("ScoreLeftGoal");
         this.scoreRight += 1;
         UpdateUI();
-        ResetBall();
+        ResetBall("Left");
         ShowVictoryMessage("Player Left Scores!"); // Exibe a mensagem de vitória
     }
 
     public void ScoreRightGoal()
     {
-        soundEffect.Play();
+        PlayAudio(0);
         Debug.Log("ScoreRightGoal");
         this.scoreLeft += 1;
         UpdateUI();
-        ResetBall();
+        ResetBall("Right");
         ShowVictoryMessage("Player Right Scores!"); // Exibe a mensagem de vitória
     }
 
@@ -138,7 +172,7 @@ public class JogoController : MonoBehaviour
         this.scoreTextRight.text = this.scoreRight.ToString();
     }
 
-    private void ResetBall()
+    private void ResetBall(string side)
     {
         this.ballController.Stop();
         this.ball.transform.position = this.startingPosition;

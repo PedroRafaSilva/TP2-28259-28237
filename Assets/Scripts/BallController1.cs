@@ -39,6 +39,17 @@ public class BallController1 : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         bool hit = false;
 
+         if (other.CompareTag("Barrier")) {
+            soundEffect.Play();
+            Vector3 newDirection = (transform.position - other.transform.position).normalized;
+            newDirection.y = 0f;
+            newDirection.x = Mathf.Sign(newDirection.x) * Mathf.Max(Mathf.Abs(newDirection.x), this.minDirection);
+            newDirection.z = Mathf.Sign(newDirection.z) * Mathf.Max(Mathf.Abs(newDirection.z), this.minDirection);
+            speed += 0.75f;
+            hit = true;
+
+            direction = newDirection;
+        }
 
         if (other.CompareTag("Wall")) {
             soundEffect.Play();
@@ -46,6 +57,7 @@ public class BallController1 : MonoBehaviour
             speed += 0.5f;
             hit = true;
         }
+
         if (other.CompareTag("Racket")) {
             soundEffect.Play();
             Vector3 newDirection = (transform.position - other.transform.position).normalized;
@@ -68,6 +80,12 @@ public class BallController1 : MonoBehaviour
         
         float signX = Mathf.Sign(Random.Range(-1f, 1f));
         float signZ = Mathf.Sign(Random.Range(-1f, 1f));
+
+        while (signX == 0 || signZ == 0 || signX == signZ)
+        {
+            signX = Mathf.Sign(Random.Range(-1f, 1f));
+            signZ = Mathf.Sign(Random.Range(-1f, 1f));
+        }
 
         this.direction = new Vector3(0.5f * signX, 0, 0.5f * signZ);
     }

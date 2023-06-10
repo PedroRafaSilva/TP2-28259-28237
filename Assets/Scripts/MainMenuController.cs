@@ -8,7 +8,13 @@ public class MainMenuController : MonoBehaviour
    public void PlayHuman()
    {
       // Carrega a próxima cena
-      SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+      SceneManager.LoadScene("PlayerScene");
+   }
+
+   public void PlayAI()
+   {
+      // Carrega a próxima cena
+      SceneManager.LoadScene("AIScene");
    }
    
    public void Exit() {
