@@ -49,7 +49,8 @@ public class PauseMenu : MonoBehaviour
     public void Restart()
     {
         TogglePause();
-        SceneManager.LoadScene("PlayerScene");
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
     }
 
     public void QuitGame()

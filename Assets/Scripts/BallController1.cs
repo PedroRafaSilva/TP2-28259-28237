@@ -49,6 +49,13 @@ public class BallController1 : MonoBehaviour
             direction = newDirection;
         }
 
+        if (other.CompareTag("Ball")) {
+            soundEffect.Play();
+            direction.z = -direction.z;
+            speed += 0.5f;
+            hit = true;
+        }
+
         if (other.CompareTag("Wall")) {
             soundEffect.Play();
             direction.z = -direction.z;

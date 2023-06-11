@@ -12,6 +12,15 @@ EditorBuildSettings:
     path: Assets/Scenes/PlayerScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/AIScene.unity
-    guid: 8acfaa58dd3291c48bc579164e5a7162
+    path: Assets/Scenes/AIHardScene.unity
+    guid: 5d5025e5d98d04d4582b063eecc814b4
+  - enabled: 1
+    path: Assets/Scenes/AIEasyScene.unity
+    guid: 7e7f66c8e32da934d8f65fb3902ad8c0
+  - enabled: 1
+    path: Assets/Scenes/AINormalScene.unity
+    guid: 78354d51033b20845ae763b233a21b61
+  - enabled: 1
+    path: Assets/Scenes/DoubleBallScene.unity
+    guid: 11b005528b8534848a05e65d78e0c13f
   m_configObjects: {}

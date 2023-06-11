@@ -4,9 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class JogoController : MonoBehaviour
+public class DoubleBallController : MonoBehaviour
 {
     public GameObject ball;
+    public GameObject ball2;
 
     public Text scoreTextLeft;
     public Text scoreTextRight;
@@ -26,9 +27,10 @@ public class JogoController : MonoBehaviour
     public Text textoTempoLimite;
     public AudioSource[] audioSources;
 
-    public Starter starter;
-
     private BallController1 ballController;
+    private BallController1 ballController2;
+
+    public Starter2 starter;
 
     private Vector3 startingPosition;
     private Vector3 startingPosition2;
@@ -47,6 +49,8 @@ public class JogoController : MonoBehaviour
         this.victoryMessage.SetActive(false);
         this.ballController = this.ball.GetComponent<BallController1>();
         this.startingPosition = this.ball.transform.position;
+        this.ballController2 = this.ball2.GetComponent<BallController1>();
+        this.startingPosition2 = this.ball2.transform.position;
     }
 
     // Update is called once per frame
@@ -85,6 +89,8 @@ public class JogoController : MonoBehaviour
             {
                 this.ballController.Stop();
                 this.ball.transform.position = this.startingPosition;  
+                this.ballController2.Stop();
+                this.ball2.transform.position = this.startingPosition2; 
                 return;
             }
 
@@ -149,6 +155,7 @@ public class JogoController : MonoBehaviour
     public void StartGame()
     {
         this.ballController.Go();
+        this.ballController2.Go();
     }
 
     public void ScoreLeftGoal()
@@ -157,7 +164,7 @@ public class JogoController : MonoBehaviour
         Debug.Log("ScoreLeftGoal");
         this.scoreRight += 1;
         UpdateUI();
-        ResetBall("Left");
+        ResetBall();
         ShowVictoryMessage("Player Right Scores!"); // Exibe a mensagem de vitória
     }
 
@@ -167,7 +174,7 @@ public class JogoController : MonoBehaviour
         Debug.Log("ScoreRightGoal");
         this.scoreLeft += 1;
         UpdateUI();
-        ResetBall("Right");
+        ResetBall();
         ShowVictoryMessage("Player Left Scores!"); // Exibe a mensagem de vitória
     }
 
@@ -177,11 +184,14 @@ public class JogoController : MonoBehaviour
         this.scoreTextRight.text = this.scoreRight.ToString();
     }
 
-    private void ResetBall(string side)
+    private void ResetBall()
     {
         this.ballController.Stop();
         this.ball.transform.position = this.startingPosition;
         this.ballController.Go();
+        this.ballController2.Stop();
+        this.ball2.transform.position = this.startingPosition2;
+        this.ballController2.Go();
     }
 
     private void ShowVictoryMessage(string message)
@@ -204,4 +214,5 @@ public class JogoController : MonoBehaviour
 
         victoryMessage.SetActive(false); // Desativa o objeto da mensagem de vitória
     }
+
 }
