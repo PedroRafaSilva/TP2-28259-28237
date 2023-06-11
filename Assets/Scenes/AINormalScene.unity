@@ -1788,7 +1788,7 @@ GameObject:
   - component: {fileID: 624537403}
   - component: {fileID: 624537404}
   - component: {fileID: 624537405}
-  - component: {fileID: 624537406}
+  - component: {fileID: 624537407}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -1838,8 +1838,9 @@ MonoBehaviour:
   audioSources:
   - {fileID: 624537404}
   - {fileID: 624537405}
-  - {fileID: 624537406}
+  - {fileID: 624537407}
   starter: {fileID: 1043543976}
+  randomNumber: 0
   particleEffect: {fileID: 889194357}
 --- !u!82 &624537404
 AudioSource:
@@ -2033,7 +2034,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!82 &624537406
+--- !u!82 &624537407
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2043,11 +2044,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a3e4bb1e4b38ed746bd4a17efbf2cd4c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 585d6e8f1e3076d408ec38f2bef44dc2, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.291
+  m_Volume: 0.206
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -7191,9 +7192,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 6
-  m_Text: 'VICTORY!
-
-'
+  m_Text: 11111111111111111111111111111111111111111111111111
 --- !u!222 &892183185
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7220,7 +7219,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1000, y: 150}
+  m_SizeDelta: {x: 2000, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &905645015
 GameObject:
