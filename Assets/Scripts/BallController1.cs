@@ -18,13 +18,11 @@ public class BallController1 : MonoBehaviour
     void Start()
     {
         this.rb = GetComponent<Rigidbody>();
-        //this.chooseDirection();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Method 1
         transform.position += direction * speed * Time.deltaTime;
         
     }
@@ -45,7 +43,7 @@ public class BallController1 : MonoBehaviour
             newDirection.y = 0f;
             newDirection.x = Mathf.Sign(newDirection.x) * Mathf.Max(Mathf.Abs(newDirection.x), this.minDirection);
             newDirection.z = Mathf.Sign(newDirection.z) * Mathf.Max(Mathf.Abs(newDirection.z), this.minDirection);
-            speed += 0.75f;
+            speed += 0.5f;
             hit = true;
 
             direction = newDirection;
@@ -81,12 +79,6 @@ public class BallController1 : MonoBehaviour
         float signX = Mathf.Sign(Random.Range(-1f, 1f));
         float signZ = Mathf.Sign(Random.Range(-1f, 1f));
 
-        while (signX == 0 || signZ == 0 || signX == signZ)
-        {
-            signX = Mathf.Sign(Random.Range(-1f, 1f));
-            signZ = Mathf.Sign(Random.Range(-1f, 1f));
-        }
-
         this.direction = new Vector3(0.5f * signX, 0, 0.5f * signZ);
     }
 
@@ -95,8 +87,9 @@ public class BallController1 : MonoBehaviour
     }
 
     public void Go() {
-        this.speed = 7;
+        this.speed = 20;
         chooseDirection();
         this.stopped = false;
     }
 }
+

@@ -16,7 +16,7 @@ public class JogoController : MonoBehaviour
     public GameObject instructionMessage2; 
     public GameObject beginMessage; // Referência ao objeto que exibirá a mensagem de vitória
 
-    public float restartDelay = 3f; // Tempo de atraso antes de reiniciar o jogo
+    public float restartDelay = 5f; // Tempo de atraso antes de reiniciar o jogo
     private bool started = false;
 
     private int scoreLeft = 0;
@@ -66,9 +66,14 @@ public class JogoController : MonoBehaviour
             // Atualiza o texto com o tempo formatado
             textoTempoLimite.text = "Time: " + tempoFormatado;
 
-            if (tempoLimite <= 1f)
+            if (tempoLimite <= 10f && !particleEffect.gameObject.activeSelf)
             {
                 particleEffect.gameObject.SetActive(true);
+            }
+
+
+            if (tempoLimite <= 1f)
+            {
                 StopAudio(2);
                 this.started = false;
                 PlayAudio(1);
@@ -126,12 +131,12 @@ public class JogoController : MonoBehaviour
     {
         if (scoreRight > scoreLeft)
         {
-            ShowVictoryMessage("Player Right Wins!");
+            ShowVictoryMessage("PLAYER RIGHT WINS!");
             StartCoroutine(LoadSceneAfterDelay());
         }
         else if (scoreRight < scoreLeft) 
         {
-            ShowVictoryMessage("Player Left Wins!");
+            ShowVictoryMessage("PLAYER LEFT WINS!");
             StartCoroutine(LoadSceneAfterDelay());
         }
         else
