@@ -1113,7 +1113,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1a5979baa172d401690c1974d541f81a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.36129236
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1a5979baa172d401690c1974d541f81a,
         type: 3}
@@ -1833,14 +1833,13 @@ MonoBehaviour:
   instructionMessage2: {fileID: 1573878125}
   beginMessage: {fileID: 570336622}
   restartDelay: 5
-  tempoLimite: 150
-  textoTempoLimite: {fileID: 1392350937}
+  timeLimit: 150
+  timeText: {fileID: 1392350937}
   audioSources:
   - {fileID: 624537404}
   - {fileID: 624537405}
   - {fileID: 624537407}
   starter: {fileID: 1043543976}
-  randomNumber: 0
   particleEffect: {fileID: 889194357}
 --- !u!82 &624537404
 AudioSource:
@@ -7192,7 +7191,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 6
-  m_Text: 11111111111111111111111111111111111
+  m_Text: VICTORY
 --- !u!222 &892183185
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7693,9 +7692,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  up: 273
-  down: 274
-  rb: {fileID: 0}
+  upKey: 273
+  downKey: 274
+  rb: {fileID: 1060307400}
   isPlayer: 1
   offset: 0.2
 --- !u!65 &1060307399
@@ -7745,7 +7744,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 118
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &1109299744
 GameObject:
   m_ObjectHideFlags: 0
@@ -8079,7 +8078,7 @@ GameObject:
   - component: {fileID: 1236723948}
   - component: {fileID: 1236723947}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: PauseMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9349,9 +9348,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  up: 119
-  down: 115
-  rb: {fileID: 0}
+  upKey: 119
+  downKey: 115
+  rb: {fileID: 1796309992}
   isPlayer: 1
   offset: 0.2
 --- !u!65 &1796309991
@@ -9401,7 +9400,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 118
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &1813060328 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8470764447913616803, guid: 621b95eeb34474f21a5e5ebb21f57bd0,

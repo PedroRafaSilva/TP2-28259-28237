@@ -5,16 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
-
-   public GameObject MainMenuUI;
-   public GameObject CoopMenuUI;
-   public GameObject AIMenuUI;
+   public GameObject mainMenuUI;
+   public GameObject coopMenuUI;
+   public GameObject aiMenuUI;
 
    public void PlayHuman()
    {
-      MainMenuUI.SetActive(false);
-      AIMenuUI.SetActive(false);
-      CoopMenuUI.SetActive(true);
+      mainMenuUI.SetActive(false);
+      aiMenuUI.SetActive(false);
+      coopMenuUI.SetActive(true);
    }
 
    public void SingleBall()
@@ -29,9 +28,9 @@ public class MainMenuController : MonoBehaviour
 
    public void PlayAI()
    {
-      MainMenuUI.SetActive(false);
-      CoopMenuUI.SetActive(false);
-      AIMenuUI.SetActive(true);
+      mainMenuUI.SetActive(false);
+      coopMenuUI.SetActive(false);
+      aiMenuUI.SetActive(true);
    }
 
    public void PlayAIEasy()
@@ -49,13 +48,15 @@ public class MainMenuController : MonoBehaviour
       SceneManager.LoadScene("AIHardScene");
    }
 
-   public void Back() {
-       AIMenuUI.SetActive(false);
-       CoopMenuUI.SetActive(false);
-       MainMenuUI.SetActive(true);
+   public void Back()
+   {
+       aiMenuUI.SetActive(false);
+       coopMenuUI.SetActive(false);
+       mainMenuUI.SetActive(true);
    }
    
-   public void Exit() {
+   public void Exit()
+   {
       Application.Quit();
    }
 }

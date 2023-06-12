@@ -449,9 +449,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e745ee878443cdf4ba3d510e7b92f4ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainMenuUI: {fileID: 1000051199}
-  CoopMenuUI: {fileID: 409054942}
-  AIMenuUI: {fileID: 913749002}
+  mainMenuUI: {fileID: 1000051199}
+  coopMenuUI: {fileID: 409054942}
+  aiMenuUI: {fileID: 913749002}
 --- !u!114 &111215847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1043,9 +1043,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e745ee878443cdf4ba3d510e7b92f4ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainMenuUI: {fileID: 1000051199}
-  CoopMenuUI: {fileID: 409054942}
-  AIMenuUI: {fileID: 913749002}
+  mainMenuUI: {fileID: 1000051199}
+  coopMenuUI: {fileID: 409054942}
+  aiMenuUI: {fileID: 913749002}
 --- !u!114 &230004480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2221,9 +2221,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e745ee878443cdf4ba3d510e7b92f4ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainMenuUI: {fileID: 1000051199}
-  CoopMenuUI: {fileID: 409054942}
-  AIMenuUI: {fileID: 913749002}
+  mainMenuUI: {fileID: 1000051199}
+  coopMenuUI: {fileID: 409054942}
+  aiMenuUI: {fileID: 913749002}
 --- !u!1 &913749002
 GameObject:
   m_ObjectHideFlags: 0

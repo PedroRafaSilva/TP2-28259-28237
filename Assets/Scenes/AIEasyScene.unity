@@ -1833,14 +1833,13 @@ MonoBehaviour:
   instructionMessage2: {fileID: 1573878125}
   beginMessage: {fileID: 570336622}
   restartDelay: 5
-  tempoLimite: 150
-  textoTempoLimite: {fileID: 1392350937}
+  timeLimit: 120
+  timeText: {fileID: 1392350937}
   audioSources:
   - {fileID: 624537404}
   - {fileID: 624537405}
   - {fileID: 624537407}
   starter: {fileID: 1043543976}
-  randomNumber: 0
   particleEffect: {fileID: 889194357}
 --- !u!82 &624537404
 AudioSource:
@@ -7695,9 +7694,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  up: 273
-  down: 274
-  rb: {fileID: 0}
+  upKey: 0
+  downKey: 0
+  rb: {fileID: 1060307400}
   isPlayer: 0
   offset: 0.2
 --- !u!65 &1060307399
@@ -9486,9 +9485,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  up: 119
-  down: 115
-  rb: {fileID: 0}
+  upKey: 119
+  downKey: 115
+  rb: {fileID: 1796309992}
   isPlayer: 1
   offset: 0.2
 --- !u!65 &1796309991
@@ -9538,7 +9537,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 118
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &1813060328 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8470764447913616803, guid: 621b95eeb34474f21a5e5ebb21f57bd0,
